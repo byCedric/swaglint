@@ -1,0 +1,6 @@
+# we dont need the compiled files
+/lib
+
+# keep npm files out the repo
+/node_modules
+npm-debug.log*
