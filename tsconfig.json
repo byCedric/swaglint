@@ -4,6 +4,6 @@
         "moduleResolution": "node",
         "outDir": "./lib/",
         "rootDir": "./src/",
-        "target": "es6"
+        "target": "esnext"
 	}
 }
