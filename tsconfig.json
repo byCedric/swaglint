@@ -4,6 +4,7 @@
         "moduleResolution": "node",
         "outDir": "./lib/",
         "rootDir": "./src/",
+        "strictNullChecks": true,
         "target": "esnext"
 	}
 }

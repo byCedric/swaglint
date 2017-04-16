@@ -4,6 +4,80 @@
         "tslint:recommended"
     ],
     "jsRules": {},
-    "rules": {},
+    "rules": {
+    	"arrow-parens": [
+    		true,
+    		"ban-single-arg-parens"
+    	],
+    	"indent": [
+    		true,
+    		"tabs"
+	    ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
+        "member-ordering": [
+        	true,
+        	{
+        		"order": [
+        			{
+        				"name": "static fields",
+        				"kinds": [
+        					"public-static-field",
+							"protected-static-field",
+							"private-static-field"
+        				]
+        			},
+        			{
+        				"name": "instance fields",
+        				"kinds": [
+        					"public-instance-field",
+							"protected-instance-field",
+							"private-instance-field"
+        				]
+        			},
+        			{
+        				"name": "constructors",
+        				"kinds": [
+        					"public-constructor",
+							"protected-constructor",
+							"private-constructor"
+        				]
+        			},
+        			{
+        				"name": "instance methods",
+        				"kinds": [
+        					"public-instance-method",
+							"protected-instance-method",
+							"private-instance-method"
+        				]
+        			},
+        			{
+        				"name": "static methods",
+        				"kinds": [
+        					"public-static-method",
+							"protected-static-method",
+							"private-static-method"
+        				]
+        			}
+        		]
+        	}
+        ],
+        "ordered-imports": [
+        	true,
+        	{
+        		"import-sources-order": "any",
+        		"named-imports-order": "lowercase-last"
+        	}
+        ],
+        "quotemark": [
+            true,
+            "single",
+            "jsx-single",
+            "avoid-escape"
+        ],
+        "trailing-comma": false
+    },
     "rulesDirectory": []
 }

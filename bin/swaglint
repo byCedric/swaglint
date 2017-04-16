@@ -1,0 +1,5 @@
+#!/usr/bin/env node --trace-warnings
+'use strict';
+
+require('babel-polyfill');
+require(`${__dirname}/../lib/cli`);

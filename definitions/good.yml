@@ -1,0 +1,91 @@
+swagger: '2.0'
+
+host: api.fixer.io
+schemes:
+  - http
+  - https
+
+produces:
+  - application/json
+
+info:
+  title: Fixer.io
+  version: 1.0.0
+  description: Fixer.io is a free JSON API for current and historical foreign exchange rates published by the European Central Bank.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+parameters:
+  date:
+    name: date
+    description: asd
+    in: path
+    type: string
+    format: date
+    required: true
+
+paths:
+  /latest:
+    get:
+      description: Get the latest foreign exchange reference rates in JSON format.
+      responses:
+        200:
+          description: Wow!
+          schema:
+            $ref: '#/definitions/Rates'
+
+  /{date}:
+    parameters:
+      - $ref: '#/parameters/date'
+    get:
+      description: Get the foreign exchange reference rates in JSON format, which are closest to the provided date.
+      responses:
+        200:
+          description: Wow!
+          schema:
+            $ref: '#/definitions/Rates'
+
+definitions:
+  Rates:
+    type: object
+    properties:
+      base:
+        $ref: '#/definitions/Rate'
+      date:
+        type: string
+        format: date
+      rates:
+        type: object
+
+  Rate:
+    type: string
+    enum:
+      - AUD
+      - CAD
+      - CHF
+      - CYP
+      - CZK
+      - DKK
+      - EEK
+      - EUR
+      - GBP
+      - HKD
+      - HUF
+      - ISK
+      - JPY
+      - KRW
+      - LTL
+      - LVL
+      - MTL
+      - NOK
+      - NZD
+      - PLN
+      - ROL
+      - SEK
+      - SGD
+      - SIT
+      - SKK
+      - TRL
+      - USD
+      - ZAR
