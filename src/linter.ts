@@ -30,7 +30,7 @@ export class Linter {
 
 		return new Promise((resolve, reject) => {
 			if (!this.filesAreSwagger()) {
-				reject(new Error('File(s) are not swagger documents'));
+				return reject(new Error('File(s) are not swagger documents'));
 			}
 
 			Promise
