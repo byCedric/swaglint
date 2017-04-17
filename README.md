@@ -16,8 +16,10 @@ $ npm install swaglint
 
 ## Usage
 
-``` javascript
-// almost there!
+``` bash
+$ swaglint swagger.yml
+$ swaglint partial.yml other.yml
+$ cat cool-api.yml | swaglint --stdin
 ```
 
 ## Change log
