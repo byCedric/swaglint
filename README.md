@@ -3,6 +3,7 @@
 [![Latest Version on Packagist][ico-version]][link-npm]
 [![Software License][ico-license]](LICENSE.md)
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Code quality][ico-quality]][link-quality]
 
 Yet another Swagger linter
 
@@ -48,7 +49,9 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-version]: https://img.shields.io/npm/v/swaglint.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/npm/dt/swaglint.svg?style=flat-square
+[ico-quality]: https://img.shields.io/codacy/grade/b09f559d94ca4facad53b6d9b3a059c4.svg?style=flat-square
 
+[link-quality]: asd
 [link-npm]: https://www.npmjs.com/package/swaglint
 [link-downloads]: https://www.npmjs.com/package/swaglint
 [link-author]: https://github.com/bycedric
