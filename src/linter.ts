@@ -1,13 +1,15 @@
 import { File, FileSource } from './file';
+import { Issue } from './issue';
 import { Parser } from './parser';
 import { Reporter } from './reporter';
 import { Validator } from './validator';
 
-// export interface LinterOptions {
-// 	parser: string;
-// 	reporter: string;
-// 	validator: string;
-// }
+export interface LinterResult {
+	/** The file that has been linted. */
+	file: File;
+	/** All issues encoutered within that file. */
+	issues: Issue[];
+}
 
 export class Linter {
 	/** The parser instance to analyse the source code with. */
@@ -16,25 +18,26 @@ export class Linter {
 	private reporter: Reporter;
 	/** The syntax validator for the source code. */
 	private validator: Validator;
-	/** The files the linter needs to lint. */
+	/** The files the linter needs to run over. */
 	private files: File[] = [];
 
 	/**
 	 * Lint all files, report any issues and exit with a success or failure code.
 	 */
-	public async run(output: NodeJS.WritableStream): Promise<number> {
-		let status = 0;
+	public async run(output: NodeJS.WritableStream): Promise<LinterResult[]> {
+		const results: LinterResult[] = [];
 
 		for (const file of this.files) {
 			const issues = await this.parser.locateIssues(file, await this.validator.getIssues(file));
 
 			if (issues.length > 0) {
-				status = 1;
 				output.write(`${this.reporter.reportIssues(file, issues)}\n`);
 			}
+
+			results.push({ file, issues });
 		}
 
-		return status;
+		return results;
 	}
 
 	/**

@@ -10,7 +10,7 @@ export interface FileSource {
 
 export class File {
 	/** The source of the file. */
-	private source: FileSource;
+	public readonly source: FileSource;
 
 	/**
 	 * Create a new file instance based on a file source.
@@ -23,7 +23,7 @@ export class File {
 	 * The the full path and file name of the file.
 	 */
 	public getPath(): string {
-		return this.source.path;
+		return this.source.path || '<unknown>';
 	}
 
 	/**

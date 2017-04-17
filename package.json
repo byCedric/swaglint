@@ -2,12 +2,17 @@
 	"name": "swaglint",
 	"version": "0.0.1",
 	"description": "Yet another swagger linter",
-	"main": "index.js",
+	"main": "./lib/index.js",
+	"typings": "./lib/index.d.ts",
 	"directories": {
 		"bin": "./bin/",
 		"doc": "./doc/",
 		"test": "./test/"
 	},
+	"files": [
+		"LICENSE.md",
+		"./lib/"
+	],
 	"scripts": {
 		"build": "$(npm bin)/tsc && $(npm bin)/babel ./lib/ --out-dir ./lib/",
 		"test": "npm run test:style",
@@ -40,7 +45,6 @@
 	"devDependencies": {
 		"@types/chalk": "^0.4",
 		"@types/commander": "^2.3",
-		"@types/concat-stream": "^1.6",
 		"@types/node": "7.0",
 		"babel-cli": "^6.24",
 		"babel-polyfill": "^6.23",

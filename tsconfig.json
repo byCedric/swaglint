@@ -1,9 +1,10 @@
 {
 	"compilerOptions": {
+		"declaration": true,
         "module": "commonjs",
         "moduleResolution": "node",
         "outDir": "./lib/",
-        "rootDir": "./src/",
+        "rootDir": "./src",
         "strictNullChecks": true,
         "target": "esnext"
 	}

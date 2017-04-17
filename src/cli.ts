@@ -1,7 +1,6 @@
 import * as program from 'commander';
+import * as concatStream from 'concat-stream';
 import { Linter } from './linter';
-
-const concatStream = require('concat-stream');
 
 program
 	.version('0.0.1')
@@ -24,7 +23,7 @@ if (program.stdin) {
 			{ encoding: 'string' },
 			contents => {
 				linter
-					.addFile({ contents, path: program.stdinFilename || '<stream>' })
+					.addFile({ contents, path: program.stdinFilename })
 					.run(process.stdout);
 			}
 		)

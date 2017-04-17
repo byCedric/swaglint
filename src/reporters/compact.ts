@@ -10,6 +10,9 @@ export default class CompactReporter implements Reporter {
 		return issues.map(issue => this.rowFromIssue(file, issue)).join('\n');
 	}
 
+	/**
+	 * Get a simple formatted string that represents a single issue.
+	 */
 	private rowFromIssue(file: File, issue: Issue): string {
 		const path = file.getPath();
 		const type = issue.type.toLowerCase();
