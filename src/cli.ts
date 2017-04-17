@@ -2,15 +2,33 @@ import * as program from 'commander';
 import * as concatStream from 'concat-stream';
 import { Linter } from './linter';
 
+// tslint:disable-next-line no-var-requires
+const pkg = require('../package.json');
+const terminal = process.stdout;
+
 program
-	.version('0.0.1')
-	.usage('<path> [options]')
-	.option('--parser [parser]', 'The parser that creates the AST', 'yaml')
-	.option('--reporter [formatter]', 'The reporter to view the issues with.', 'stylish')
-	.option('--validator [validator]', 'The swagger validator', 'sway')
+	.version(pkg.version)
+	.usage('<file ...> [options]')
+	.option('-p, --parser [name]', 'Parser\'s [name] to locate issues within the source', 'yaml')
+	.option('-r, --reporter [name]', 'Reporter\'s [name] to format and report all encountered issues', 'stylish')
+	.option('-v, --validator [name]', 'Validator\'s [name] to validate the swagger syntax', 'sway')
 	.option('--stdin', 'If the linter should use STDIN instead of files')
-	.option('--stdin-filename [name]', 'The filename to use when validating from STDIN')
-	.parse(process.argv);
+	.option('--stdin-filename [name]', 'The filename to use when validating from STDIN');
+
+program.on('--help', () => {
+	const lines = [
+		'  Examples:',
+		'',
+		'    $ swaglint swagger.yml',
+		'    $ swaglint partial.yml other.yml',
+		'    $ cat cool-api.yml | swaglint --stdin',
+		'',
+	];
+
+	lines.forEach(line => terminal.write(`${line}\n`));
+});
+
+program.parse(process.argv);
 
 const linter = new Linter()
 	.setParser(program.parser)
@@ -24,14 +42,16 @@ if (program.stdin) {
 			contents => {
 				linter
 					.addFile({ contents, path: program.stdinFilename })
-					.run(process.stdout);
+					.run(terminal);
 			}
 		)
 	);
-} else {
+} else if (program.args.length) {
 	for (const path of program.args) {
 		linter.addFile({ path });
 	}
 
-	linter.run(process.stdout);
+	linter.run(terminal);
+} else {
+	program.help();
 }
