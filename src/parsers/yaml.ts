@@ -12,12 +12,13 @@ export default class YamlParser implements Parser {
 	/**
 	 * @inheritdoc
 	 */
-	public async locateIssues(file: File, issues: Issue[]): Promise<Issue[]> {
-		const tree = this.createTree(file);
+	public locateIssues(file: File, issues: Issue[]): Promise<Issue[]> {
+		return new Promise((resolve, reject) => {
+			const tree = this.createTree(file);
+			const located = issues.map(issue => this.resolveLocation(issue, tree));
 
-		return issues.map(
-			issue => this.resolveLocation(issue, tree)
-		);
+			resolve(located);
+		});
 	}
 
 	/**

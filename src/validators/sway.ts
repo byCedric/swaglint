@@ -13,15 +13,20 @@ export default class SwayValidator implements Validator {
 	/**
 	 * @inheritdoc
 	 */
-	public async getIssues(file: File): Promise<Issue[]> {
-		const validator = await createSway({ definition: this.createDocument(file) });
-		const { errors, warnings } = validator.validate();
-		const issues = [].concat(
-			errors.map(entry => this.issueFromEntry('error', entry)),
-			warnings.map(entry => this.issueFromEntry('warning', entry)),
-		);
+	public getIssues(file: File): Promise<Issue[]> {
+		return new Promise((resolve, reject) => {
+			createSway({ definition: this.createDocument(file) })
+				.then(sway => {
+					const { errors, warnings } = sway.validate();
+					const issues = [].concat(
+						errors.map(entry => this.issueFromEntry('error', entry)),
+						warnings.map(entry => this.issueFromEntry('warning', entry)),
+					);
 
-		return this.flattenNestedIssues(issues);
+					resolve(this.flattenNestedIssues(issues));
+				})
+				.catch(reject);
+		});
 	}
 
 	/**

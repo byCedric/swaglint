@@ -24,20 +24,33 @@ export class Linter {
 	/**
 	 * Lint all files, report any issues and exit with a success or failure code.
 	 */
-	public async run(output: NodeJS.WritableStream): Promise<LinterResult[]> {
+	public run(output: NodeJS.WritableStream): Promise<LinterResult[]> {
+		const { files, parser, reporter, validator } = this;
 		const results: LinterResult[] = [];
 
-		for (const file of this.files) {
-			const issues = await this.parser.locateIssues(file, await this.validator.getIssues(file));
+		return new Promise((resolve, reject) => {
+			Promise
+				.all(files.map(file => validator.getIssues(file)))
+				.then(validateIssues => {
+					Promise
+						.all(files.map((file, index) => parser.locateIssues(file, validateIssues[index])))
+						.then(locatedIssues => {
+							files.forEach((file, index) => {
+								const issues = locatedIssues[index];
 
-			if (issues.length > 0) {
-				output.write(`${this.reporter.reportIssues(file, issues)}\n`);
-			}
+								if (issues.length > 0) {
+									output.write(`${reporter.reportIssues(file, issues)}\n`);
+								}
 
-			results.push({ file, issues });
-		}
+								results.push({ file, issues });
+							});
 
-		return results;
+							resolve(results);
+						})
+						.catch(reject);
+				})
+				.catch(reject);
+		});
 	}
 
 	/**
