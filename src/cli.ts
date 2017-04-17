@@ -5,6 +5,7 @@ import { Linter } from './linter';
 // tslint:disable-next-line no-var-requires
 const pkg = require('../package.json');
 const terminal = process.stdout;
+const onError = output => error => output.write(`${error.message || error}\n`);
 
 program
 	.version(pkg.version)
@@ -42,7 +43,8 @@ if (program.stdin) {
 			contents => {
 				linter
 					.addFile({ contents, path: program.stdinFilename })
-					.run(terminal);
+					.run(terminal)
+					.catch(onError(terminal));
 			}
 		)
 	);
@@ -51,7 +53,7 @@ if (program.stdin) {
 		linter.addFile({ path });
 	}
 
-	linter.run(terminal);
+	linter.run(terminal).catch(onError(terminal));
 } else {
 	program.help();
 }

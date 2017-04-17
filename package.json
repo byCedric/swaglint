@@ -15,9 +15,10 @@
 		"LICENSE.md"
 	],
 	"scripts": {
-		"build": "$(npm bin)/tsc && $(npm bin)/babel ./lib/ --out-dir ./lib/",
+		"build": "rm -rf ./lib/ && $(npm bin)/tsc && $(npm bin)/babel ./lib/ --out-dir ./lib/",
 		"test": "npm run test:style",
-		"test:style": "$(npm bin)/tslint --format stylish ./src/**/*.ts"
+		"test:style": "$(npm bin)/tslint --format stylish ./src/**/*.ts",
+		"prepublish": "npm run build"
 	},
 	"repository": {
 		"type": "git",

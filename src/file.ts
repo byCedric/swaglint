@@ -36,4 +36,19 @@ export class File {
 
 		return this.source.contents;
 	}
+
+	/**
+	 * Determine if the file is a swagger specification.
+	 */
+	public isSwagger(): boolean {
+		const contents = this.getContents();
+		const regex = new RegExp(`^swagger\s+:\s+['"]\d+\.\d+['"]`, 'i');
+		const matches = this.getContents().match(regex);
+
+		if (matches && matches.length === 1) {
+			return true;
+		}
+
+		return false;
+	}
 }

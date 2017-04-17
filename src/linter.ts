@@ -29,6 +29,10 @@ export class Linter {
 		const results: LinterResult[] = [];
 
 		return new Promise((resolve, reject) => {
+			if (!this.filesAreSwagger()) {
+				reject(new Error('File(s) are not swagger documents'));
+			}
+
 			Promise
 				.all(files.map(file => validator.getIssues(file)))
 				.then(validateIssues => {
@@ -103,5 +107,12 @@ export class Linter {
 		}
 
 		throw new Error(`Could not initiate external module "${path}${name}".`);
+	}
+
+	/**
+	 * Determine if all files are swagger.
+	 */
+	private filesAreSwagger(): boolean {
+		return this.files.every(file => file.isSwagger());
 	}
 }
