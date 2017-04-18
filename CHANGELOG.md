@@ -6,7 +6,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ## NEXT - YYYY-MM-DD
 
 ### Added
-- Examples within the readme for the CLI.
+- Nothing
 
 ### Deprecated
 - Nothing
@@ -19,6 +19,15 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Security
 - Nothing
+
+
+## 0.1.5 - 2017-04-18
+
+### Added 
+- Examples within the readme for the CLI.
+
+### Fixed
+- Swagger document regex validation.
 
 
 ## 0.1.4 - 2017-04-17
