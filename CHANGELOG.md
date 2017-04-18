@@ -12,7 +12,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 - Nothing
 
 ### Fixed
-- Nothing
+- Code quality link in the readme
 
 ### Removed
 - Nothing

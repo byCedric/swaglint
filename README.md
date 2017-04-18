@@ -51,7 +51,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-downloads]: https://img.shields.io/npm/dt/swaglint.svg?style=flat-square
 [ico-quality]: https://img.shields.io/codacy/grade/b09f559d94ca4facad53b6d9b3a059c4.svg?style=flat-square
 
-[link-quality]: asd
+[link-quality]: https://www.codacy.com/app/byCedric/swaglint
 [link-npm]: https://www.npmjs.com/package/swaglint
 [link-downloads]: https://www.npmjs.com/package/swaglint
 [link-author]: https://github.com/bycedric
