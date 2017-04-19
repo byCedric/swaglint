@@ -47,7 +47,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-repo]: https://img.shields.io/badge/repo-github-green.svg?style=flat-square
+[ico-repo]: https://img.shields.io/badge/repo-github-brightgreen.svg?style=flat-square
 [ico-version]: https://img.shields.io/npm/v/swaglint.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/npm/dt/swaglint.svg?style=flat-square
