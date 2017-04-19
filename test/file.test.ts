@@ -52,7 +52,7 @@ describe('File', () => {
 		it('throws error without path and preloaded content', () => {
 			const file = new File({ });
 
-			expect(() => file.getContents()).to.throw(/not.*fetch.*file/i);
+			expect(() => file.getContents()).to.throw(Error, /not.*fetch.*file/i);
 		});
 	});
 
