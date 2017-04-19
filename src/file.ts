@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 
 export interface FileSource {
 	/** The absolute file path, including name and extension */
-	path: string;
+	path?: string;
 	/** The contents of the file. */
 	contents?: string;
 }
@@ -30,11 +30,15 @@ export class File {
 	 * Get the contents of the file, as string.
 	 */
 	public getContents(): string {
-		if (!this.source.contents) {
+		if (!this.source.contents && this.source.path) {
 			this.source.contents = readFileSync(this.source.path, 'utf8');
 		}
 
-		return this.source.contents;
+		if (this.source.contents) {
+			return this.source.contents;
+		}
+
+		throw new Error('Could not fetch the contents of the file');
 	}
 
 	/**
