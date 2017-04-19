@@ -64,6 +64,7 @@
         		]
         	}
         ],
+        "no-unused-expression": false,
         "ordered-imports": [
         	true,
         	{
