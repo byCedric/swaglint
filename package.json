@@ -15,7 +15,7 @@
 		"LICENSE.md"
 	],
 	"scripts": {
-		"prepublish": "npm run build",
+		"prepublish": "npm run test && npm run build",
 		"test": "npm run test:style && npm run test:unit",
 		"test:style": "$(npm bin)/tslint --format stylish ./src/**/*.ts",
 		"test:unit": "$(npm bin)/mocha --opts .mocha.opts ./test/**/*.test.ts",
